@@ -75,7 +75,12 @@ end
 get '/' do
 	garden = nil
 	if params[:sentence]
-		garden = create_tree_row(params[:sentence])
+		valid = params[:sentence] =~ /^[\w,!\?\. ]+$/
+		if valid
+			garden = create_tree_row(params[:sentence])
+		else
+			garden = false
+		end
 	end
 	erb :index, :locals => {:garden => garden}
 end
