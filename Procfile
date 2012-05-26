@@ -1,0 +1,1 @@
+web: bundle exec ruby wordtrees_server.rb -p $PORT
