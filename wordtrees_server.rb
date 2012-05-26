@@ -52,7 +52,7 @@ helpers do
 
 	def create_tree_row(sentence)
 		words = sentence.split
-		height = words.map { |e| e.length * 2 }.max
+		height = words.map { |e| e.length * 2 }.max || 0
 		frontier = Array.new(height, 0)
 		bases = []
 		words.each do |w|
@@ -60,7 +60,7 @@ helpers do
 			frontier, base = new_frontier(frontier, widths, height)
 			bases << base
 		end
-		maxlen = frontier.max
+		maxlen = frontier.max || 0
 		grid = tree_grid(words, bases.map {|b| b - 1},maxlen,height)
 		grid.map! { |r| r.join }
 		output = "\n"
