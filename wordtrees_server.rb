@@ -75,7 +75,7 @@ end
 get '/' do
 	garden = nil
 	if params[:sentence]
-		valid = params[:sentence] =~ /^[\w,!\?\. ]+$/
+		valid = params[:sentence].length < 200 && params[:sentence] =~ /^[\w,!\?\. ]+$/
 		if valid
 			garden = create_tree_row(params[:sentence])
 		else
